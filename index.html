@@ -86,7 +86,8 @@ search.addEventListener("input", () => {
   const cards = document.querySelectorAll(".card-link");
 
   cards.forEach(card => {
-    const text = card.textContent.toLowerCase();
+    const h4 = card.querySelector("h4");
+    const text = h4 ? h4.textContent.toLowerCase() : "";
     card.style.display = text.includes(value) ? "" : "none";
   });
 });
