@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBGdir</title>
+  <style>
+    body {
+      text-align: center;
+      color: white;
+      background-color: black;
+    }
+    .card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+    }
+    img {
+ max-height: 100px;
+    }
+    a {
+ color: white;
+    }
+    ol {
+      text-align: left;
+    }
+    input {
+      border: none;
+      height: 30px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+<h1>UBGdir</h1>
+  <h2>Unblocked Games Dictionary </h2>
+</div>
+  <div>
+  <h3>Sites</h3>
+    <p>Sites are shown in order: best rating to worst rating</p>
+    <input type="text" id="search" placeholder="Search...">
+    <hr>
+    <a href="https://pgis.x10.mx" target="_blank" class="card-link">
+    <div><h4>PGIS</h4> <img src="https://i.postimg.cc/V6zNPQXW/7ad210998816426cb8bd123081203109-free.png" alt="site logo"> <p>rating: <b>273</b></p></div> </a>
+    <hr>
+  </div>
+  <br>
+  <div>
+    <h3>Submit a website</h3>
+    <h4>Rules:</h4>
+    <ol>
+      <li>The site must have at least 20 games.</li>
+      <li>The site must not contain any malicious ads or links such as viruses, scams etc.</li>
+      <li>The site must try to stay unblocked</li>
+      <li>The site must be suitable for all ages</li>
+      <li>You must own or have owners permission of the site tou want to submitt </li>
+      <li>optional: The site should use not use external embeds.</li>
+    </ol>
+    <a href="https://forms.gle/VbJPvrR8byEPhKK29" target="_blank">Submit here</a>
+  </div>
+  <script>
+const search = document.getElementById("search");
+
+search.addEventListener("input", () => {
+  const value = search.value.toLowerCase();
+  const cards = document.querySelectorAll(".card-link");
+
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(value) ? "" : "none";
+  });
+});
+  </script>
+</body>
+</html>
