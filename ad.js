@@ -21,11 +21,9 @@
   function showRandom() {
     const currentDomain = location.hostname.replace("www.", "");
 
-    // only run if current domain exists in list
     const allowed = items.some(item => getDomain(item.link) === currentDomain);
     if (!allowed) return;
 
-    // exclude current domain
     const validItems = items.filter(item => {
       return getDomain(item.link) !== currentDomain;
     });
@@ -33,8 +31,6 @@
     if (validItems.length === 0) return;
 
     const randomItem = validItems[Math.floor(Math.random() * validItems.length)];
-
-    const scriptTag = document.currentScript;
 
     const container = document.createElement("div");
 
@@ -49,8 +45,21 @@
     a.appendChild(img);
     container.appendChild(a);
 
-    // insert exactly where the script is
-    scriptTag.parentNode.insertBefore(container, scriptTag);
+    // try to insert where script is
+    let scriptTag = document.currentScript;
+
+    // fallback if null (external/defer/async)
+    if (!scriptTag) {
+      const scripts = document.getElementsByTagName("script");
+      scriptTag = scripts[scripts.length - 1];
+    }
+
+    if (scriptTag && scriptTag.parentNode) {
+      scriptTag.parentNode.insertBefore(container, scriptTag);
+    } else {
+      // last fallback → append to body
+      document.body.appendChild(container);
+    }
   }
 
   if (document.readyState === "loading") {
